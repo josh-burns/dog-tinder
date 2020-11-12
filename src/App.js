@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Card from "./components/Card";
+import React, { useState, useLayoutEffect } from "react";
+import axios from "axios";
 
-function App() {
+import styled from "styled-components";
+
+const AppStyle = styled.div`
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  /* -ms-transform: translateY(-50%); */
+  transform: translateY(-50%);
+`;
+
+export default function App() {
+  const [dogs, setdogs] = useState([]);
+
+  // TODO: get 10 images and save state of objects
+
+  async function dataFetch() {
+    axios.get(`https://dog.ceo/api/breeds/image/random`).then((res) => {
+      const dogImage = res.data.message;
+      let arr = [dogImage];
+      console.log({ arr });
+      setdogs((dogs) => [...dogs, arr]);
+    });
+  }
+
+  useLayoutEffect(() => {
+    for (let i = 0; i < 50; i++) {
+      dataFetch();
+      console.log({ dogs });
+    }
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppStyle>
+      <Card dataObject={dogs}> This is a Card</Card>
+    </AppStyle>
   );
 }
-
-export default App;
