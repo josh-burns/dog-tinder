@@ -23,8 +23,7 @@ export default function App() {
   async function dataFetch() {
     axios.get(`https://dog.ceo/api/breeds/image/random`).then((res) => {
       const dogImage = res.data.message;
-      let arr = [dogImage];
-      console.log({ arr });
+      let arr = [...dogs, dogImage];
       setdogs((dogs) => [...dogs, arr]);
     });
   }
@@ -32,7 +31,6 @@ export default function App() {
   useLayoutEffect(() => {
     for (let i = 0; i < 50; i++) {
       dataFetch();
-      console.log({ dogs });
     }
   }, []);
 
