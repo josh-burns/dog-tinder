@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import MatchedDogCard from "./MatchedDogCard";
+import logo from "../Assets/fetchr.png";
 
 const ImgStyle = styled.image`
   display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800%;
+  max-height: 50%;
+  border-radius: 70%;
   margin-left: auto;
   margin-right: auto;
 `;
@@ -19,17 +26,21 @@ const Button = styled.div`
   border-radius: 3px;
 `;
 
+const CardStyle = styled.div`
+  top: 20%;
+  padding: 5%;
+`;
+
 export default function Card(props) {
   const [isDogVisible, setisDogVisible] = useState(false);
   const [isDecisionMade, setisDecisionMade] = useState(false);
   const [isLoved, setisLoved] = useState(false);
   const [isMatch, setisMatch] = useState(false);
   const [lastDogMatched, setlastDogMatched] = useState(false);
-
-  let doggos = [...props.dataObject];
+  const [viewedDogUrl, setviewedDogUrl] = useState([]);
 
   // let newproperties = { ...props.dataObject };
-  const fullDogObject = { dogUrl: doggos };
+  // const fullDogObject = { dogUrl: doggos };
 
   useEffect(() => {
     const rand = Boolean(Math.round(Math.random()));
@@ -38,76 +49,70 @@ export default function Card(props) {
 
   return (
     <div>
-      <br />
-      <br />
-      <br />
-      {isDogVisible ? (
+      <CardStyle>
         <div>
+          {" "}
           <ImgStyle>
-            <img src={fullDogObject.dogUrl[0]} alt="dog" />
+            {" "}
+            <a href="/">
+              <img src={logo} alt="logo" />
+            </a>
           </ImgStyle>
-          <Button
-            onClick={() => {
-              setisDogVisible(false);
-              setisDecisionMade(true);
-              setisLoved(true);
-            }}
-          >
-            ❤️
-          </Button>
-          <Button
-            onClick={() => {
-              setisDogVisible(false);
-              setisDecisionMade(true);
-              setisLoved(false);
-            }}
-          >
-            💔
-          </Button>
-        </div>
-      ) : null}
-
-      {isDogVisible ? null : (
-        <Button
-          onClick={() => {
-            setisDogVisible(true);
-            setlastDogMatched(false);
-          }}
-        >
-          Show Dog
-        </Button>
-      )}
-
-      <br />
-      <br />
-      <br />
-      <br />
-
-      {isDecisionMade ? (
-        <div>
-          {props.dataObject.shift()}
-          {fullDogObject.dogUrl[0].shift()}
-          {setisDecisionMade(false)}({isMatch ? setlastDogMatched(true) : null})
-        </div>
-      ) : null}
-
-      <div>
-        {lastDogMatched && isLoved ? (
+          {isDogVisible ? (
+            <div>
+              <ImgStyle>
+                <img
+                  class="animate__animated animate__bounceIn"
+                  src={props.dataObject[0]}
+                  alt="dog"
+                />
+              </ImgStyle>
+              <Button
+                onClick={() => {
+                  setisDogVisible(false);
+                  setisDecisionMade(true);
+                  setisLoved(true);
+                }}
+              >
+                ❤️
+              </Button>
+              <Button
+                onClick={() => {
+                  setisDogVisible(false);
+                  setisDecisionMade(true);
+                  setisLoved(false);
+                }}
+              >
+                💔
+              </Button>
+            </div>
+          ) : (
+            <Button
+              onClick={() => {
+                setisDogVisible(true);
+                setlastDogMatched(false);
+                props.dataObject.shift();
+              }}
+            >
+              Next Dog
+            </Button>
+          )}
+          {isDecisionMade ? (
+            <div>
+              {isMatch ? <div>{setlastDogMatched(true)}</div> : null}
+              {setviewedDogUrl([props.dataObject[0], ...viewedDogUrl])}
+              {setisDecisionMade(false)}
+            </div>
+          ) : null}
           <div>
-            <h1> its a match!!</h1>
+            {lastDogMatched && isLoved ? (
+              <div>
+                <MatchedDogCard url={viewedDogUrl} />
+              </div>
+            ) : null}
           </div>
-        ) : null}{" "}
-      </div>
-
-      <div>
-        <br />
-
-        <br />
-
-        <br />
-
-        <br />
-      </div>
+        </div>
+      </CardStyle>
     </div>
   );
 }

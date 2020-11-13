@@ -6,13 +6,20 @@ import axios from "axios";
 import styled from "styled-components";
 
 const AppStyle = styled.div`
-  width: 300px;
+  min-width: 40rem;
+  max-width: 40rem;
+  min-height: 80%;
+  max-height: 80%;
+  top: 50%; /* IMPORTANT */
+  left: 50%; /* IMPORTANT */
   position: absolute;
-  top: 50%;
-  left: 50%;
-  right: 50%;
-  /* -ms-transform: translateY(-50%); */
+  margin-left: -50%; /* HALF OF THE WIDTH */
   transform: translateY(-50%);
+  border-radius: 10px;
+  border: 0.2px solid;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 16px 16px rgba(0, 0, 0, 0.12);
 `;
 
 export default function App() {
@@ -29,7 +36,7 @@ export default function App() {
   }
 
   useLayoutEffect(() => {
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 100; i++) {
       dataFetch();
     }
   }, []);
