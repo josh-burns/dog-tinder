@@ -24,6 +24,7 @@ const AppStyle = styled.div`
 
 export default function App() {
   const [dogs, setdogs] = useState([]);
+  // eslint-disable-next-line
 
   async function dataFetch() {
     axios.get(`https://dog.ceo/api/breeds/image/random`).then((res) => {
@@ -37,6 +38,7 @@ export default function App() {
     for (let i = 0; i < 100; i++) {
       dataFetch();
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
