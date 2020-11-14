@@ -5,14 +5,11 @@ import logo from "../Assets/fetchr.png";
 
 const ImgStyle = styled.image`
   display: flex;
+  max-height: 80%;
+  max-width: 60%;
+  max-height: 60%;
   margin-left: auto;
-  max-height: 80%;
   margin-right: auto;
-  max-width: 90%;
-  max-height: 80%;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin: 5%;
 `;
 
 const LogoStyle = styled.image`
@@ -74,12 +71,9 @@ export default function Card(props) {
           </LogoStyle>
           Find your canine Match on Fetchr!
           <br />
-          <br />
           Choose ❤️ or 💔 and if they ❤️ you...
           <br />
-          <br />
           It's a match!
-          <br />
           <br />
           {isDogVisible ? (
             <div>
