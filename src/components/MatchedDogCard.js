@@ -8,7 +8,7 @@ const ImgStyle = styled.image`
   margin-left: auto;
   margin-right: auto;
   max-width: 50%;
-  max-height: 50%;
+  max-height: 20%;
   border-radius: 70%;
   margin-left: auto;
   margin-right: auto;
@@ -17,13 +17,10 @@ const ImgStyle = styled.image`
 const MatchedDogCardStyle = styled.div`
   text-align: center;
   border-radius: 30px;
-  margin: 5%;
   height: 30%;
-  max-height: 300px;
+  max-height: 400px;
   display: block;
-  padding-bottom: 20%;
-  margin-bottom: 5%;
-  padding-top: 5%;
+  padding-bottom: 5%;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
@@ -60,7 +57,6 @@ export default function MatchedDogCard(props) {
             size: "large",
           }}
         ></TwitterShareButton>
-        <br />
       </MatchedDogCardStyle>
     </div>
   );

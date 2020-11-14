@@ -42,10 +42,10 @@ export const Button = styled.div`
 const CardStyle = styled.div`
   text-align: center;
   top: 20%;
-  padding: 5%;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 40%;
   width: 90%;
   margin: 0 auto;
 `;
