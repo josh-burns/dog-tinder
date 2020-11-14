@@ -18,9 +18,9 @@ const MatchedDogCardStyle = styled.div`
   text-align: center;
   border-radius: 30px;
   margin: 5%;
+  max-height: 30%;
   display: block;
   padding: 10%;
-  max-height: 40%;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
@@ -40,14 +40,14 @@ export default function MatchedDogCard(props) {
   }, []);
 
   return (
-    <div class="animate__animated animate__slideInUp animate__faster">
+    <div className="animate__animated animate__slideInUp animate__faster">
       <br />
       <MatchedDogCardStyle>
         <h1> its a match! </h1>
         <br />
         Meet <h1>{character.firstName} </h1>
         <TwitterShareButton
-          url={DogInfo.dogUrl}
+          url={DogInfo.dogUrl[0] || "url"}
           options={{
             text: `I matched with ${DogInfo.dogName} on Fetchr!!`,
             via: "josh_burns_tech",

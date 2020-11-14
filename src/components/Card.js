@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import styled from "styled-components";
 import MatchedDogCard from "./MatchedDogCard";
 import logo from "../Assets/fetchr.png";
@@ -54,17 +54,14 @@ const CardStyle = styled.div`
 `;
 
 export default function Card(props) {
+  const rand = Boolean(Math.round(Math.random()));
+
   const [isDogVisible, setisDogVisible] = useState(false);
   const [isDecisionMade, setisDecisionMade] = useState(false);
   const [isLoved, setisLoved] = useState(false);
-  const [isMatch, setisMatch] = useState(false);
+  const [isMatch, setisMatch] = useState(rand);
   const [lastDogMatched, setlastDogMatched] = useState(false);
   const [viewedDogUrl, setviewedDogUrl] = useState([]);
-
-  useEffect(() => {
-    const rand = Boolean(Math.round(Math.random()));
-    setisMatch(rand);
-  });
 
   return (
     <div>
@@ -87,7 +84,7 @@ export default function Card(props) {
           {isDogVisible ? (
             <div>
               <Button
-                class="inline"
+                className="inline"
                 onClick={() => {
                   setisDogVisible(false);
                   setisDecisionMade(true);
@@ -97,7 +94,7 @@ export default function Card(props) {
                 <h1>❤️</h1>
               </Button>
               <Button
-                class="inline"
+                className="inline"
                 onClick={() => {
                   setisDogVisible(false);
                   setisDecisionMade(true);
@@ -108,7 +105,7 @@ export default function Card(props) {
               </Button>
               <ImgStyle>
                 <img
-                  class="animate__animated animate__bounceIn"
+                  className="animate__animated animate__bounceIn"
                   src={props.dataObject[0]}
                   alt="dog"
                 />
@@ -118,6 +115,7 @@ export default function Card(props) {
             <Button
               onClick={() => {
                 setisDogVisible(true);
+                setisMatch(Boolean(Math.round(Math.random())));
                 setlastDogMatched(false);
                 props.dataObject.shift();
               }}

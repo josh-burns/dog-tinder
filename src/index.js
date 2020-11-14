@@ -6,11 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import Banner from "./components/Banner";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Banner>
-      <App />
-    </Banner>
-  </React.StrictMode>,
+  <Banner>
+    <App />
+  </Banner>,
   document.getElementById("root")
 );
 
