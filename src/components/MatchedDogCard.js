@@ -37,6 +37,7 @@ export default function MatchedDogCard(props) {
   useEffect(() => {
     character.firstName = Faker.name.firstName();
     setDogInfo({ dogName: character.firstName, dogUrl: props.url[0] });
+    // eslint-disable-next-line
   }, []);
 
   return (

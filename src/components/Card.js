@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import MatchedDogCard from "./MatchedDogCard";
 import logo from "../Assets/fetchr.png";
