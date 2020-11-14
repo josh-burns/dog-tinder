@@ -6,29 +6,51 @@ import logo from "../Assets/fetchr.png";
 const ImgStyle = styled.image`
   display: flex;
   margin-left: auto;
+  max-height: 80%;
   margin-right: auto;
-  max-width: 800%;
-  max-height: 50%;
-  border-radius: 70%;
+  max-width: 90%;
+  max-height: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin: 5%;
+`;
+
+const LogoStyle = styled.image`
+  display: block;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
 `;
 
-const Button = styled.div`
-  display: flex;
+export const Button = styled.div`
+  display: inline-block;
+  max-width: 30%;
   align-items: center;
   justify-content: center;
   color: palevioletred;
+  border-radius: 25px;
   font-size: 1em;
+  color: white;
   margin: 1em;
   padding: 0.25em 1em;
+  background-color: #ff9191;
   border: 2px solid palevioletred;
-  border-radius: 3px;
+  left: 50%;
+  right: 50%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11),
+    0 4px 4px rgba(0, 0, 0, 0.11), 0 6px 8px rgba(0, 0, 0, 0.11),
+    0 8px 16px rgba(0, 0, 0, 0.11);
 `;
 
 const CardStyle = styled.div`
+  text-align: center;
   top: 20%;
   padding: 5%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  margin: 0 auto;
 `;
 
 export default function Card(props) {
@@ -39,9 +61,6 @@ export default function Card(props) {
   const [lastDogMatched, setlastDogMatched] = useState(false);
   const [viewedDogUrl, setviewedDogUrl] = useState([]);
 
-  // let newproperties = { ...props.dataObject };
-  // const fullDogObject = { dogUrl: doggos };
-
   useEffect(() => {
     const rand = Boolean(Math.round(Math.random()));
     setisMatch(rand);
@@ -51,15 +70,42 @@ export default function Card(props) {
     <div>
       <CardStyle>
         <div>
-          {" "}
-          <ImgStyle>
-            {" "}
+          <LogoStyle>
             <a href="/">
               <img src={logo} alt="logo" />
             </a>
-          </ImgStyle>
+          </LogoStyle>
+          Find your canine Match on Fetchr!
+          <br />
+          <br />
+          Choose ❤️ or 💔 and if they ❤️ you...
+          <br />
+          <br />
+          It's a match!
+          <br />
+          <br />
           {isDogVisible ? (
             <div>
+              <Button
+                class="inline"
+                onClick={() => {
+                  setisDogVisible(false);
+                  setisDecisionMade(true);
+                  setisLoved(true);
+                }}
+              >
+                <h1>❤️</h1>
+              </Button>
+              <Button
+                class="inline"
+                onClick={() => {
+                  setisDogVisible(false);
+                  setisDecisionMade(true);
+                  setisLoved(false);
+                }}
+              >
+                <h1>💔</h1>
+              </Button>
               <ImgStyle>
                 <img
                   class="animate__animated animate__bounceIn"
@@ -67,24 +113,6 @@ export default function Card(props) {
                   alt="dog"
                 />
               </ImgStyle>
-              <Button
-                onClick={() => {
-                  setisDogVisible(false);
-                  setisDecisionMade(true);
-                  setisLoved(true);
-                }}
-              >
-                ❤️
-              </Button>
-              <Button
-                onClick={() => {
-                  setisDogVisible(false);
-                  setisDecisionMade(true);
-                  setisLoved(false);
-                }}
-              >
-                💔
-              </Button>
             </div>
           ) : (
             <Button
@@ -94,7 +122,7 @@ export default function Card(props) {
                 props.dataObject.shift();
               }}
             >
-              Next Dog
+              <h2>Next Dog </h2>
             </Button>
           )}
           {isDecisionMade ? (

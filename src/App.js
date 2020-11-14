@@ -6,26 +6,24 @@ import axios from "axios";
 import styled from "styled-components";
 
 const AppStyle = styled.div`
-  min-width: 40rem;
-  max-width: 40rem;
-  min-height: 80%;
-  max-height: 80%;
-  top: 50%; /* IMPORTANT */
-  left: 50%; /* IMPORTANT */
-  position: absolute;
-  margin-left: -50%; /* HALF OF THE WIDTH */
-  transform: translateY(-50%);
-  border-radius: 10px;
-  border: 0.2px solid;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
-    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
-    0 16px 16px rgba(0, 0, 0, 0.12);
+  min-width: 10rem;
+  /* max-width: 40rem; */
+  height: 100%;
+  display: block;
+  font-size: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 450px;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+  background: white;
+  border-radius: 30px;
 `;
 
 export default function App() {
   const [dogs, setdogs] = useState([]);
-
-  // TODO: get 10 images and save state of objects
 
   async function dataFetch() {
     axios.get(`https://dog.ceo/api/breeds/image/random`).then((res) => {
