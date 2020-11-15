@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import MatchedDogCard from "./MatchedDogCard";
-import logo from "../Assets/fetchr.png";
+import Logo from "../Assets/fetchr.png";
 
 const ImgStyle = styled.image`
   display: flex;
@@ -66,7 +66,7 @@ export default function Card(props) {
         <div>
           <LogoStyle>
             <a href="/">
-              <img src={logo} alt="logo" />
+              <img src={Logo} alt="logo" />
             </a>
           </LogoStyle>
           Find your canine Match on Fetchr!
