@@ -27,7 +27,7 @@ export default function App() {
   // eslint-disable-next-line
 
   async function dataFetch() {
-    axios.get(`https://dog.ceo/api/breeds/image/random`).then((res) => {
+    await axios.get(`https://dog.ceo/api/breeds/image/random`).then((res) => {
       const dogImage = res.data.message;
       let arr = [...dogs, dogImage];
       setdogs((dogs) => [...dogs, arr]);

@@ -46,11 +46,16 @@ export default function MatchedDogCard(props) {
         <h1> its a match! </h1>
         Meet... <h1 className="inline">{character.firstName} </h1>
         <ImgStyle>
-          <img className="inline" src={props.url[0]} alt="" />
+          <img
+            className="inline"
+            src={props.url[0]}
+            alt="matched-dog"
+            id="matched-dog"
+          />
         </ImgStyle>
         <br />
         <TwitterShareButton
-          url={DogInfo.dogUrl[0] || "url"}
+          url={DogInfo.dogUrl || "url"}
           options={{
             text: `I matched with ${DogInfo.dogName} on Fetchr!!`,
             via: "josh_burns_tech",

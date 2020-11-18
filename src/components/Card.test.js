@@ -4,6 +4,9 @@ import App from "../App";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 
+const dogImageFixture =
+  "https://images.dog.ceo/breeds/cattledog-australian/IMG_1211.jpg";
+
 test("renders without crashing", async () => {
   render(<Card />);
 });
@@ -28,7 +31,7 @@ test("renders the logo when the page loads", () => {
 test("Shows a dog image when the 'Next Dog' button is pressed", async () => {
   render(<App />);
 
-  await act(() => {
+  act(() => {
     fireEvent.click(screen.getByText("Next Dog"));
   });
 
@@ -40,11 +43,11 @@ test("Shows a dog image when the 'Next Dog' button is pressed", async () => {
 it("unmounts the dog image if the user 💔s the dog", async () => {
   render(<App />);
 
-  await act(() => {
+  act(() => {
     fireEvent.click(screen.getByText("Next Dog"));
   });
 
-  await act(() => {
+  act(() => {
     fireEvent.click(screen.getByText("💔"));
   });
   const dogImage = screen.queryByAltText("dog");
@@ -53,17 +56,19 @@ it("unmounts the dog image if the user 💔s the dog", async () => {
 });
 
 it("unmounts the dog image if the user ❤️s the dog", async () => {
-  render(<App />);
+  render(<App dataObject={[dogImageFixture]} />);
 
-  fireEvent.click(screen.getByText("Next Dog"));
-  fireEvent.click(screen.getByText("❤️"));
+  act(() => {
+    fireEvent.click(screen.getByText("Next Dog"));
+  });
+
+  act(() => {
+    fireEvent.click(screen.getByText("❤️"));
+  });
   const dogImage = screen.queryByAltText("dog");
 
   expect(dogImage).toBeNull();
 });
-
-//TODO
-// it("Renders the matched dog when the loved dog is matched");
 
 // it("Makes sure the same name is not used twice");
 
