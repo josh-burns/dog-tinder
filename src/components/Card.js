@@ -4,10 +4,8 @@ import MatchedDogCard from "./MatchedDogCard";
 import Logo from "../Assets/fetchr.png";
 
 const ImgStyle = styled.image`
-  display: flex;
+  object-fit: cover;
   max-height: 80%;
-  max-width: 60%;
-  max-height: 60%;
   margin-left: auto;
   margin-right: auto;
 `;
@@ -43,6 +41,7 @@ const CardStyle = styled.div`
   text-align: center;
   top: 20%;
   display: block;
+  width: 20%;
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 40%;
@@ -69,11 +68,8 @@ export default function Card(props) {
               <img src={Logo} alt="logo" />
             </a>
           </LogoStyle>
-          Find your canine Match on Fetchr!
-          <br />
-          Choose ❤️ or 💔 and if they ❤️ you...
-          <br />
-          It's a match!
+          Find your canine Match on Fetchr! Choose ❤️ or 💔 and if they ❤️
+          you... It's a match!
           <br />
           {isDogVisible ? (
             <div>
@@ -102,6 +98,8 @@ export default function Card(props) {
                   className="animate__animated animate__bounceIn"
                   src={props.dataObject[0]}
                   alt="dog"
+                  width="80%"
+                  height="80%"
                 />
               </ImgStyle>
             </div>
